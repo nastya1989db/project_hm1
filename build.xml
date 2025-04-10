@@ -1,37 +1,32 @@
 <?xml version="1.0"?>
-<project name="project_hm1" default="dist" basedir=".">
-
-    <!-- Определение свойств -->
+<project name="TaskNew1" default="all">
+    <target name="all" depends="clean, compile, jar"/>
+    <!-- Указываем директорию исходников Ок -->
     <property name="src.dir" value="src"/>
+     <!-- Указываем директорию для собранного проекта Ок -->
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir" value="${build.dir}/jar"/>
-    <property name="main-class" value="Main"/>
-
-    <!-- Очистка ранее построенных файлов -->
+    <!-- Задача для очистки директории сборки Ок -->
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
 
-    <!-- Компиляция исходников -->
+    <!-- Задача для компиляции исходных файлов Ок -->
     <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}"/> 
+        <!--  includeantruntime="false"/> -->
     </target>
-
-    <!-- Упаковка классов в JAR-файл -->
+    <!-- Задача для упаковки классов в JAR-файл -->
     <target name="jar" depends="compile">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Main-Class" value="task1_hm.${ant.project.name}"/>
             </manifest>
         </jar>
     </target>
 
-    <!-- Основная цель сборки -->
-    <target name="dist" depends="jar">
-        <echo message="Проект успешно упакован в ${jar.dir}/${ant.project.name}.jar"/>
-    </target>
-
 </project>
+

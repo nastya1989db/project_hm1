@@ -1,2 +1,0 @@
-manifest-Version: 1.0
-main-class: TaskNew1
