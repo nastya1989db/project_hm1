@@ -15,13 +15,14 @@ RUN wget https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.12-bin.tar
 ENV ANT_HOME=/usr/local/ant
 ENV PATH=${ANT_HOME}/bin:${PATH}
 
-#RUN git clone https://github.com/nastya1989db/new_ant_proj.git clone2
-COPY build.xml ./clone2/
-COPY ./src/* ./clone2/src/
+RUN git clone https://github.com/nastya1989db/project_hm1.git clone2
+
+#для локального использования
+#COPY build.xml ./clone2/
+#COPY ./src/* ./clone2/src/
 
 WORKDIR /clone2
 
 RUN ant
-#RUN mv new_ant_proj/build/jar/HelloAnt.jar clone1/build/jar/HelloAnt.jar
 
 CMD ["java", "-jar", "/clone2/build/jar/TaskNew1.jar"]
